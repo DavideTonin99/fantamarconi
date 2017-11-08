@@ -26,7 +26,25 @@
             }
         }
     } else {
-        die(json_encode(array("noresult"=>"0 RESULTS")));
+        die(json_encode(array("noresult"=>"0 Persone trovate")));
+    }
+
+    // load persons
+    $query = "SELECT * FROM $table_processes;";
+
+    $result = $conn->query($query);
+    if ($result->num_rows > 0) {
+    	$cont = 0;
+        $data["processes"] = array();
+        while($row = $result->fetch_assoc()) {
+            $data["processes"][$cont] = array();
+            foreach ($row as $key => $value) {
+            	$data["processes"][$cont][$key] = utf8_encode($value);
+            }
+            $cont++;
+        }
+    } else {
+        die(json_encode(array("noresult"=>"0 Processi trovati")));
     }
 
 	$conn->close();
