@@ -1,0 +1,33 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #eeeeee;
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    height: 100px;
+    text-align: center;
+    font-size: 200%;
+    line-height: 100px;
+    background: #212121;
+    color: white;
+    border-bottom: 3px solid #101010;
+}
+
+.navbar {
+    margin-bottom: 0px;
+}
+
+#content-container {
+    min-height: 80vh;
+    background: white;
+    border-bottom: 3px solid #cccccc;
+}
+
+footer {
+    padding: 20px;
+    padding-left: 50px;
+    line-height: 40px;
+}
