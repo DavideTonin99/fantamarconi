@@ -2,7 +2,7 @@ html, body{
     margin: 0;
     padding: 0;
     height: 100%;
-    background: #eeeeee;
+    background: #f8f8f8;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -13,7 +13,7 @@ header {
     line-height: 100px;
     background: #212121;
     color: white;
-    border-bottom: 3px solid #101010;
+    border-bottom: 3px solid #dddddd;
 }
 
 .navbar {
@@ -23,7 +23,7 @@ header {
 #content-container {
     min-height: 80vh;
     background: white;
-    border-bottom: 3px solid #cccccc;
+    border-bottom: 3px solid #e7e7e7;
 }
 
 footer {

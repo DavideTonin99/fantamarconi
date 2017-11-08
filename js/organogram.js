@@ -7,7 +7,7 @@ $(document).ready( function() {
             if (data.error !== undefined & data.error !== "") {
                 alert('Error '+data.error);
             } else {
-            	// fai qui quello che devi fare bomber
+            	console.log(data);
             }
         })
         .fail(function() {
