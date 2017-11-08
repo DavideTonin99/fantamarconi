@@ -22,7 +22,7 @@ CREATE TABLE processes (
 	name VARCHAR(20) PRIMARY KEY,
 	start_date DATE,
 	end_date DATE,
-	id_referent INT,
+	id_referent INT NOT NULL,
 	CONSTRAINT FOREIGN KEY (id_referent)
 		REFERENCES people_processes(id)
 );

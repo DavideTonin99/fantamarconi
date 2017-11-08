@@ -10,10 +10,25 @@
 	    die(json_encode($data));
 	}
 
-	$data = array();
+	$table_processes = 'processes';
+	$table_persons = 'people_processes';
 
-	// data loading
+    // load persons
+    $query = "SELECT * FROM $table_persons;";
+
+    $result = $conn->query($query);
+    if ($result->num_rows > 0) {
+        $data["persons"] = array();
+        while($row = $result->fetch_assoc()) {
+            $data["persons"][$row['id']] = array();
+            foreach ($row as $key => $value) {
+            	$data["persons"][$row['id']][$key] = utf8_encode($value);
+            }
+        }
+    } else {
+        die(json_encode(array("noresult"=>"0 RESULTS")));
+    }
 
 	$conn->close();
-	die(json_decode($data));
+	die(json_encode($data));
 ?>

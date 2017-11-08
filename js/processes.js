@@ -1,5 +1,5 @@
 $(document).ready( function() {
-	$.get("load_organogram.php",
+	$.get("load_processes.php",
         {
             dataType: "json"
         }
@@ -11,6 +11,6 @@ $(document).ready( function() {
             }
         })
         .fail(function() {
-            alert("Failed");
-	});
+            console.log('failed');
+	   });
 });
