@@ -13,6 +13,8 @@
 	$table_processes = 'processes';
 	$table_persons = 'people_processes';
 
+    // FEOLA LEGGI QUI -- cambiare caricamento dei dati (JOIN tabelle con solo i campi necessari)
+
     // load persons
     $query = "SELECT * FROM $table_persons;";
 
@@ -29,7 +31,7 @@
         die(json_encode(array("noresult"=>"0 Persone trovate")));
     }
 
-    // load persons
+    // load processes
     $query = "SELECT * FROM $table_processes;";
 
     $result = $conn->query($query);

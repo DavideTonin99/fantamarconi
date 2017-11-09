@@ -5,8 +5,9 @@ CREATE TABLE organogram (
 	name VARCHAR(20) NOT NULL,
 	surname VARCHAR(20) NOT NULL,
 	email VARCHAR(30),
-	role VARCHAR(20),
-	parent_level INT,
+	sector VARCHAR(50),
+	role VARCHAR(50),
+	parent_level NOT NULL,
 	CONSTRAINT FOREIGN KEY (parent_level)
 		REFERENCES organogram(id)
 );
