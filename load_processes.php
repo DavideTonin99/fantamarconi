@@ -13,40 +13,20 @@
 	$table_processes = 'processes';
 	$table_persons = 'people_processes';
 
-    // FEOLA LEGGI QUI -- cambiare caricamento dei dati (JOIN tabelle con solo i campi necessari)
-
-    // load persons
-    $query = "SELECT * FROM $table_persons;";
-
+    $query = "SELECT ".$table_processes.".name AS nome_processo, CONCAT(".$table_persons.".name,' ',surname) AS referente,email,start_date AS data_inizio,end_date AS data_fine FROM processes,people_processes WHERE id=id_referent;";
     $result = $conn->query($query);
     if ($result->num_rows > 0) {
-        $data["persons"] = array();
-        while($row = $result->fetch_assoc()) {
-            $data["persons"][$row['id']] = array();
-            foreach ($row as $key => $value) {
-            	$data["persons"][$row['id']][$key] = utf8_encode($value);
-            }
-        }
-    } else {
-        die(json_encode(array("noresult"=>"0 Persone trovate")));
-    }
-
-    // load processes
-    $query = "SELECT * FROM $table_processes;";
-
-    $result = $conn->query($query);
-    if ($result->num_rows > 0) {
-    	$cont = 0;
         $data["processes"] = array();
+        $cont = 0;
         while($row = $result->fetch_assoc()) {
             $data["processes"][$cont] = array();
             foreach ($row as $key => $value) {
-            	$data["processes"][$cont][$key] = utf8_encode($value);
+                $data["processes"][$cont][$key] = utf8_encode($value);
             }
             $cont++;
         }
     } else {
-        die(json_encode(array("noresult"=>"0 Processi trovati")));
+        die(json_encode(array("noresult"=>"0 Persone trovate")));
     }
 
 	$conn->close();
