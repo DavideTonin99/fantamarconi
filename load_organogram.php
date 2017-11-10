@@ -12,6 +12,8 @@
 	    die(json_encode($data));
 	}
 
+	$table = 'organogram';
+	
 	// data loading
 	$table = 'organogram';
     $query = "SELECT * FROM $table;";
