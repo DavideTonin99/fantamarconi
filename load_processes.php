@@ -13,7 +13,7 @@
 	$table_processes = 'processes';
 	$table_persons = 'people_processes';
 
-    $query = "SELECT ".$table_processes.".name AS nome_processo, CONCAT(".$table_persons.".name,' ',surname) AS referente,email,start_date AS data_inizio,end_date AS data_fine FROM processes,people_processes WHERE id=id_referent;";
+    $query = "SELECT ".$table_processes.".name AS nome_processo, CONCAT(".$table_persons.".name,' ',surname) AS referente,email,DATE_FORMAT(start_date,'%d-%m-%Y') AS data_inizio,DATE_FORMAT(end_date,'%d-%m-%Y') AS data_fine FROM processes,people_processes WHERE id=id_referent;";
     $result = $conn->query($query);
     if ($result->num_rows > 0) {
         $data["processes"] = array();
