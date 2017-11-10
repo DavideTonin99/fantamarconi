@@ -32,19 +32,21 @@ function process_data(data) {
     $('#content').append("<div class='row' id='table-container'><table id='result-table' class='table table-striped table-bordered'></table></div>");
 
     thead_columns = "";
-    $(Object.keys(data.processes[0])).each( function(index,key) {
+    keys = [];
+    for (key in data.processes[0]) {
         thead_columns += '<th>'+key.toUpperCase()+'</th>';
-    });
+        keys.push(key);
+    }
 
     $('#result-table').append('<tr>'+thead_columns+'</tr>');
 
     $(data.processes).each( function(index) {
-        process_values = Object.values(data.processes[index.toString()]);
-        row = '<td>'+process_values[0]+'</td>';
-        row += '<td>'+process_values[1]+'</td>';
-        row += '<td>'+process_values[2]+'</td>';
-        row += '<td>'+process_values[3]+'</td>';
-        row += '<td>'+process_values[4]+'</td>';
+        process_values = data.processes[index.toString()];
+        row = '<td>'+process_values[keys[0]]+'</td>';
+        row += '<td>'+process_values[keys[1]]+'</td>';
+        row += '<td>'+process_values[keys[2]]+'</td>';
+        row += '<td>'+process_values[keys[3]]+'</td>';
+        row += '<td>'+process_values[keys[4]]+'</td>';
         $('#result-table').append('<tr>'+row+'</tr>');
     });
 }
