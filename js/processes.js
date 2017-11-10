@@ -41,12 +41,24 @@ function process_data(data) {
     $('#result-table').append('<tr>'+thead_columns+'</tr>');
 
     $(data.processes).each( function(index) {
-        process_values = data.processes[index.toString()];
-        row = '<td>'+process_values[keys[0]]+'</td>';
-        row += '<td>'+process_values[keys[1]]+'</td>';
-        row += '<td>'+process_values[keys[2]]+'</td>';
-        row += '<td>'+process_values[keys[3]]+'</td>';
-        row += '<td>'+process_values[keys[4]]+'</td>';
+		process_values = data.processes[index.toString()];
+        row = "";
+        for (i=0;i<keys.length;i++) {
+            row += '<td>'+process_values[keys[i]]+'</td>';
+        }
         $('#result-table').append('<tr>'+row+'</tr>');
     });
+
+	if ($('#json-export').length > 0) {
+        $('#json-export').parent('div').remove();
+    }
+
+    current_date = new Date();
+    current_table = $('#table-select').val();
+    json_export_conf(JSON.stringify(data), current_table+"_"+current_date.getDay()+"_"+current_date.getMonth()+"_"+current_date.getFullYear()+'.json', 'text/plain');
+}
+
+function json_export_conf(text, name, type) {
+    var file = new Blob([text], {type: type});
+    $("<div class='row text-center'><a id='json-export' href='"+URL.createObjectURL(file)+"' target='_blank' download='"+name+"'>ESPORTA IN JSON</a></div>").insertAfter('#table-container');
 }
