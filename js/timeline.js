@@ -9,8 +9,8 @@ $(document).ready( function() {
             if (data.error !== undefined & data.error !== "") {
                 alert('Error '+data.error);
             } else {
-            	console.log(data);
-                timeline_data = data;
+            	//console.log(data);
+                timeline_data = data.processes;
                 google.charts.load('current', {packages:["timeline"]});
                 google.charts.setOnLoadCallback(draw_timeline);
             }
@@ -26,14 +26,22 @@ function draw_timeline() {
     var chart = new google.visualization.Timeline(container);
     var dataTable = new google.visualization.DataTable();
 
-    dataTable.addColumn({ type: 'string', id: 'President' });
-    dataTable.addColumn({ type: 'date', id: 'Start' });
-    dataTable.addColumn({ type: 'date', id: 'End' });
-    dataTable.addRows([
-      [ 'Washington', new Date(1789, 3, 30), new Date(1797, 2, 4) ],
-      [ 'Adams',      new Date(1797, 2, 4),  new Date(1801, 2, 4) ],
-      [ 'Jefferson',  new Date(1801, 2, 4),  new Date(1809, 2, 4) ]]);
+    dataTable.addColumn({ type: 'string', id: 'Referente' });
+    dataTable.addColumn({ type: 'string', id: 'Compito' });
+    dataTable.addColumn({ type: 'date', id: 'Inizio' });
+    dataTable.addColumn({ type: 'date', id: 'Fine' });
 
+    timeline = [];
+    $(timeline_data).each( function(index) {
+        current_process = timeline_data[index];
+        row = [current_process.referente,
+                current_process.processo + ": " +current_process.compito,
+                new Date(current_process.data_inizio.substring(6,10),current_process.data_inizio.substring(3,5),current_process.data_inizio.substring(0,2)),
+                new Date(current_process.data_fine.substring(6,10),current_process.data_fine.substring(3,5),current_process.data_fine.substring(0,2))];
+        timeline.push(row);
+    });
+
+    console.log(timeline);
+    dataTable.addRows(timeline);
     chart.draw(dataTable);
-
 }
