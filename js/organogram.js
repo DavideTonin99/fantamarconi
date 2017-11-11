@@ -1,3 +1,5 @@
+var organogram_data;
+
 $(document).ready( function() {
 	$.get("load_organogram.php",
         {
@@ -7,7 +9,8 @@ $(document).ready( function() {
             if (data.error !== undefined & data.error !== "") {
                 alert('Error '+data.error);
             } else {
-            	console.log(data);
+                //console.log(data);
+                organogram_data = data;
                 google.charts.load('current', {packages:["orgchart"]});
                 google.charts.setOnLoadCallback(draw_organogram);
             }
@@ -17,7 +20,7 @@ $(document).ready( function() {
 	});
 });
 
-function draw_organogram(data) {
+function draw_organogram() {
     var data = new google.visualization.DataTable();
     data.addColumn('string', 'Name');
     data.addColumn('string', 'Manager');

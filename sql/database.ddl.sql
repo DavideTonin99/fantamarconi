@@ -30,11 +30,11 @@ CREATE TABLE processes (
 
 CREATE TABLE timeline (
 	process VARCHAR(20),
-	id_person INT,
+	id_referent INT,
 	start_date DATE,
-	end_date DATE,
+	end_date DATE NOT NULL,
 	job VARCHAR(100) NOT NULL,
-	CONSTRAINT PRIMARY KEY (id_process,id_person,start_date),
-	CONSTRAINT FOREIGN KEY (process) REFERENCES processes(process),
-	CONSTRAINT FOREIGN KEY (id_person) REFERENCES people_processes(id)
+	CONSTRAINT PRIMARY KEY (process,id_referent,start_date),
+	CONSTRAINT FOREIGN KEY (process) REFERENCES processes(name),
+	CONSTRAINT FOREIGN KEY (id_referent) REFERENCES people_processes(id)
 );
