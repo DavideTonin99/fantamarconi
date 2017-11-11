@@ -10,7 +10,10 @@
 	    die(json_encode($data));
 	}
 
-    $person = $_GET['person'];
+    $person = "";
+    if (isset($_GET['person'])) {
+        $person = $_GET['person'];
+    }
 	$table_timeline = 'timeline';
     $table_persons = 'people_processes';
 
