@@ -10,7 +10,7 @@ $(document).ready( function() {
                 alert('Error '+data.error);
             } else {
                 //console.log(data);
-                organogram_data = data;
+                organogram_data = data.organogram;
                 google.charts.load('current', {packages:["orgchart"]});
                 google.charts.setOnLoadCallback(draw_organogram);
             }
@@ -21,24 +21,28 @@ $(document).ready( function() {
 });
 
 function draw_organogram() {
+    //console.log(organogram_data);
     var data = new google.visualization.DataTable();
-    data.addColumn('string', 'Name');
-    data.addColumn('string', 'Manager');
-    data.addColumn('string', 'ToolTip');
+    data.addColumn('string', 'Nome');
+    data.addColumn('string', 'Livello Superiore');
+    data.addColumn('string', 'Informazioni');
 
-    // For each orgchart box, provide the name, manager, and tooltip to show.
-    data.addRows([
-      [{v:'Mike', f:'Mike<div style="color:red; font-style:italic">President</div>'},
-       '', 'The President'],
-      [{v:'Jim', f:'Jim<div style="color:red; font-style:italic">Vice President</div>'},
-       'Mike', 'VP'],
-      ['Alice', 'Mike', ''],
-      ['Bob', 'Jim', 'Bob Sponge'],
-      ['Carol', 'Bob', '']
-    ]);
+    var organogram = []
+
+    for (person_id in organogram_data) {
+        current_person = organogram_data[person_id];
+        row = [
+            {v:current_person.name + " " +current_person.surname,f:current_person.name+" "+current_person.surname+"<br><div class='role'>"+current_person.sector.toUpperCase()+": "+current_person.role+"</div>"},
+            organogram_data[current_person.parent_level.toString()].name + " " + organogram_data[current_person.parent_level.toString()].surname,
+            current_person.email
+        ];
+        organogram.push(row);
+    }
+    
+    data.addRows(organogram);
 
     // Create the chart.
     var chart = new google.visualization.OrgChart($('#content').get(0));
     // Draw the chart, setting the allowHtml option to true for the tooltips.
-    chart.draw(data, {allowHtml:true});
+    chart.draw(data, {allowHtml:true,allowCollapse:true});
 }

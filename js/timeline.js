@@ -47,6 +47,7 @@ function draw_timeline() {
     timeline = [];
     $(timeline_data).each( function(index) {
         current_process = timeline_data[index];
+        console.log(timeline_data);
         if (person_selected !== undefined && person_selected!=="") {
             row = [current_process.referente,
                 current_process.processo + ": "+current_process.compito,
