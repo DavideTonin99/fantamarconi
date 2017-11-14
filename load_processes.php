@@ -26,7 +26,7 @@
             $cont++;
         }
     } else {
-        die(json_encode(array("noresult"=>"0 Persone trovate")));
+        die(json_encode(array("noresult"=>"0 risultati")));
     }
 
 	$conn->close();
