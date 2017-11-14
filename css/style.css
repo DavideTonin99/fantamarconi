@@ -11,9 +11,9 @@ header {
     text-align: center;
     font-size: 200%;
     line-height: 100px;
-    background: #212121;
+    background: #111111;
     color: white;
-    border-bottom: 3px solid #dddddd;
+    border-bottom: 2px solid #000;
 }
 
 .row {
@@ -25,15 +25,20 @@ header {
 }
 
 #content-container {
+    padding-top: 1;
     min-height: 75vh;
     background: white;
     border-bottom: 12px solid #e9e9e9;
+    text-align:center;
+    margin-bottom: 10px;
 }
 
 #content {
     padding-top: 40px;
     max-width: 100%;
     overflow: auto;
+    text-align:center;
+    margin-top: 10px;
 }
 
 #table-container {
@@ -69,7 +74,7 @@ td, th {
 
 th {
     text-align: center;
-    background: #00b386;
+    background: #1d9b34;
     color: white;
     border: 2px solid #008060 !important;
 }
@@ -90,6 +95,12 @@ a:hover {
     text-decoration: none;
 }
 
+a {color: white}
+
+a > .btn {
+    padding: 20px;
+}
+
 #json-export {
     padding: 13px;
     background: #393c3c;
@@ -100,5 +111,18 @@ a:hover {
 footer {
     padding: 20px;
     padding-left: 50px;
-    line-height: 40px;
+    line-height: 10px;
+}
+
+#b1{
+    text-align:center;
+    left:100;
+}
+
+#b2{
+    text-align:center;
+}
+
+#b3{
+    text-align:center;
 }

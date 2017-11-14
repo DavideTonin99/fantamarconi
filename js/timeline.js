@@ -29,7 +29,9 @@ $(document).ready( function() {
 
 function draw_timeline() {
     console.log(timeline_data);
-    var container = document.getElementById('content');
+    $('#content').append("<div id='timeline-div' style = 'height:400px'></div>");
+    var container = document.getElementById('timeline-div');
+
     var chart = new google.visualization.Timeline(container);
     var dataTable = new google.visualization.DataTable();
 
@@ -47,17 +49,16 @@ function draw_timeline() {
     timeline = [];
     $(timeline_data).each( function(index) {
         current_process = timeline_data[index];
-        console.log(timeline_data);
         if (person_selected !== undefined && person_selected!=="") {
             row = [current_process.referente,
                 current_process.processo + ": "+current_process.compito,
-                new Date(current_process.data_inizio.substring(6,10),current_process.data_inizio.substring(3,5),current_process.data_inizio.substring(0,2)),
-                new Date(current_process.data_fine.substring(6,10),current_process.data_fine.substring(3,5),current_process.data_fine.substring(0,2))];          
+                new Date(current_process.data_inizio.substring(6,10),current_process.data_inizio.substring(3,5)-1,current_process.data_inizio.substring(0,2)),
+                new Date(current_process.data_fine.substring(6,10),current_process.data_fine.substring(3,5)-1,current_process.data_fine.substring(0,2))];          
         } else {
             row = [current_process.processo,
                 current_process.referente + ": "+current_process.compito,
-                new Date(current_process.data_inizio.substring(6,10),current_process.data_inizio.substring(3,5),current_process.data_inizio.substring(0,2)),
-                new Date(current_process.data_fine.substring(6,10),current_process.data_fine.substring(3,5),current_process.data_fine.substring(0,2))];
+                new Date(current_process.data_inizio.substring(6,10),current_process.data_inizio.substring(3,5)-1,current_process.data_inizio.substring(0,2)),
+                new Date(current_process.data_fine.substring(6,10),current_process.data_fine.substring(3,5)-1,current_process.data_fine.substring(0,2))];
             }
 
         timeline.push(row);
