@@ -19,13 +19,13 @@
 		<div id="content-container">
 			<div class="container" id="content">
 				<div class="row">
-					<a href="organogram.php"><button class="btn btn-danger col-sm-12" id="b1">Organigramma</button></a>
+					<a href="organogram.php"><button class="btn btn-danger col-sm-12">Organigramma</button></a>
 				</div>
 				<div class="row">
-					<a href="processes.php"><button class="btn btn-warning col-sm-12" id="b1">Processi</button></a>
+					<a href="processes.php"><button class="btn btn-warning col-sm-12">Processi</button></a>
 				</div>
 				<div class="row">
-					<a href="timeline.php"><button class="btn btn-primary col-sm-12" id="b1">Timeline</button></a>
+					<a href="timeline.php"><button class="btn btn-primary col-sm-12">Timeline</button></a>
 				</div>
 			</div>
 		</div>
